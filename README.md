@@ -8,12 +8,19 @@ A simple API for tracking orders
 
 Make sure you are using the correct version of ruby
 
+```
+ruby --verison
+
+=> ruby 2.3.3
+```
 ### Install gems and run migrations
 
 ```sh
 bundle install
 rails db:migrate
 rails db:seed
+
+bundle exec rspec
 ```
 
 ### Run the server
@@ -39,5 +46,5 @@ curl http://localhost:3000/products
 #### Specifying A date range by day, week, month
 
 ```sh
-curl http://localhost:3000/products?startdate=2017-08-05&enddate=2017-08-10&per=day
+curl "http://localhost:3000/products?startdate=2017-08-05&enddate=2017-08-10&per=day"
 ```
