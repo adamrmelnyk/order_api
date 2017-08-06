@@ -1,7 +1,21 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# Sample API data
+Customer.create(first_name: "Aaron")
+Order.create(status: "waiting for delivery", customer: Customer.last)
+Category.create(name: "bread").products.create(name: "rye", order: Order.last)
+Category.create(name: "vegetable").products.create(name: "cucumber", order: Order.last)
+Category.create(name: "grain").products.create(name: "rice", order: Order.last)
+Category.create(name: "dairy").products.create(name: "milk", order: Order.last)
+Category.find_by(name: "dairy").products.create(name: "milk", order: Order.last)
+
+Customer.create(first_name: "Barry")
+Order.create(status: "on its way", customer: Customer.last)
+Category.create(name: "poultry").products.create(name: "chicken", order: Order.last)
+Category.find_by(name: "dairy").products.create(name: "milk", order: Order.last)
+Category.find_by(name: "dairy").products.create(name: "milk", order: Order.last)
+
+Customer.create(first_name: "Clyde")
+Order.create(status: "delivered", customer: Customer.last)
+Category.create(name: "canned").products.create(name: "olives", order: Order.last)
+Category.create(name: "frozen").products.create(name: "peas",   order: Order.last)
+Category.find_by(name: "dairy").products.create(name: "milk", order: Order.last)
+Category.find_by(name: "dairy").products.create(name: "milk", order: Order.last)
