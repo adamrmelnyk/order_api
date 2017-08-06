@@ -5,14 +5,12 @@ class CustomersController < ApplicationController
     render json: @customer
   end
 
-  # Returns the set of orders for a particular customer
   def orders
     render json: @customer.orders
   end
 
-  # SELECT COUNT(*) FROM "products" INNER JOIN "categories_products" ON "products"."id" = "categories_products"."product_id" WHERE "categories_products"."category_id" = 4;
   def orders_by_customer_by_product
-    "SELECT
+    sql = "SELECT
       customers.id,
       customers.first_name,
       categories.name,
@@ -23,6 +21,7 @@ class CustomersController < ApplicationController
     JOIN categories_products ON products.id = categories_products.product_id
     JOIN categories ON categories_products.category_id = categories.id
     GROUP BY customers.id, customers.first_name"
+    ActiveRecord::Base.connection.execute(sql)
   end
 
 
